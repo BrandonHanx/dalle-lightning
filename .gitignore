@@ -130,3 +130,12 @@ dmypy.json
 
 #Mac OS
 .DS_Store
+
+# condor
+condor_log/
+.cache/
+.nv/
+docker_stderror
+datasets/
+results/
+wandb/
