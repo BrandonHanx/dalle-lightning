@@ -10,7 +10,7 @@ error  = condor_log/c$(cluster).p$(process).error
 environment = "mount=/vol/research/xmodal_dl/"
 
 +CanCheckpoint = True
-+GPUMem = 11000
++GPUMem = 20000
 +JobRunTime = 72
 
 should_transfer_files = True
@@ -18,12 +18,12 @@ stream_output = True
 
 request_GPUs     = 4
 request_CPUs     = 1
-request_memory = 11G
+request_memory = 32G
 requirements = (CUDAGlobalMemoryMb > 4500) && \
                (HasDocker) && \
                (CUDACapability > 2.0) && \
                (CUDADeviceName == "GeForce RTX 3090")
 
 queue arguments from (
-  --wandb
+  --wandb --gpus 4 --batch_size 8 --num_workers 8
 )
