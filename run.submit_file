@@ -16,7 +16,7 @@ environment = "mount=/vol/research/xmodal_dl/"
 should_transfer_files = True
 stream_output = True
 
-request_GPUs     = 2
+request_GPUs     = 4
 request_CPUs     = 1
 request_memory = 11G
 requirements = (CUDAGlobalMemoryMb > 4500) && \
@@ -25,5 +25,5 @@ requirements = (CUDAGlobalMemoryMb > 4500) && \
                (CUDADeviceName == "GeForce RTX 3090")
 
 queue arguments from (
-  --gpu_dist --wandb
+  --wandb
 )

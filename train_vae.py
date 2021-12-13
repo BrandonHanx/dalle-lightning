@@ -39,13 +39,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--train_dir",
         type=str,
-        default="datasets/FashionGen/train/",
+        default="datasets/FashionAll/train/",
         help="path to train dataset",
     )
     parser.add_argument(
         "--val_dir",
         type=str,
-        default="datasets/FashionGen/val/",
+        default="datasets/FashionAll/val/",
         help="path to val dataset",
     )
     parser.add_argument(
@@ -113,7 +113,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("--seed", type=int, default=42, help="random seed")
-    parser.add_argument("--gpus", type=int, default=2, help="number of gpus")
+    parser.add_argument("--gpus", type=int, default=4, help="number of gpus")
     parser.add_argument(
         "--gpu_dist",
         action="store_true",
@@ -143,10 +143,10 @@ if __name__ == "__main__":
         "--anneal_rate", type=float, default=1e-6, help="temperature annealing rate"
     )
 
-    parser.add_argument("--batch_size", type=int, default=4, help="training settings")
-    parser.add_argument("--epochs", type=int, default=20, help="training settings")
+    parser.add_argument("--batch_size", type=int, default=8, help="training settings")
+    parser.add_argument("--epochs", type=int, default=80, help="training settings")
     parser.add_argument("--num_workers", type=int, default=16, help="training settings")
-    parser.add_argument("--img_size", type=int, default=256, help="training settings")
+    parser.add_argument("--img_size", type=int, default=224, help="training settings")
     parser.add_argument(
         "--resize_ratio",
         type=float,
@@ -188,7 +188,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--z_channels", type=int, default=256, help="image latent feature dimension"
     )
-    parser.add_argument("--resolution", type=int, default=256, help="image resolution")
+    parser.add_argument("--resolution", type=int, default=224, help="image resolution")
     parser.add_argument(
         "--in_channels", type=int, default=3, help="input image channel"
     )
@@ -209,7 +209,7 @@ if __name__ == "__main__":
         "--num_res_blocks", type=int, default=2, help="number of resnet blocks"
     )
     parser.add_argument(
-        "--attn_resolutions", nargs="+", type=int, default=[16], help="model settings"
+        "--attn_resolutions", nargs="+", type=int, default=[14], help="model settings"
     )
     parser.add_argument("--dropout", type=float, default=0.0, help="model settings")
     parser.add_argument("--quant_beta", type=float, default=0.25, help="quantizer beta")
@@ -259,6 +259,7 @@ if __name__ == "__main__":
     args.val_dir = os.path.join(args.root, args.val_dir)
     args.log_dir = os.path.join(args.root, args.log_dir)
     args.backup_dir = os.path.join(args.root, args.backup_dir)
+    os.environ['WANDB_DIR'] = os.path.join(args.root, 'wandb')
 
     # random seed fix
     seed_everything(args.seed)

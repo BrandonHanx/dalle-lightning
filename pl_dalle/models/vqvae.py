@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import pytorch_lightning as pl
 import math
 
+
 from pl_dalle.modules.vqvae.vae import Encoder, Decoder
 from pl_dalle.modules.vqvae.quantize import VectorQuantizer, EMAVectorQuantizer, GumbelQuantizer
 from torch.optim.lr_scheduler import ReduceLROnPlateau

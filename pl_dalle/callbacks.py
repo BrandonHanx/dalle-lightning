@@ -1,6 +1,7 @@
 # borrowed from https://github.com/PyTorchLightning/Lightning-Bolts/blob/master/pl_bolts/callbacks/vision/image_generation.py#L15-L97
 from typing import Any, Optional, Tuple
 
+import os
 import pytorch_lightning as pl
 import torch
 import torchvision
@@ -10,7 +11,6 @@ from pytorch_lightning.utilities.distributed import rank_zero_only
 from pytorch_lightning.utilities.types import STEP_OUTPUT
 
 wandb.login(key="edc6324e6001d34f00aa0088ffbec6ff29180f2d")
-
 
 class ReconstructedImageLogger(Callback):
     def __init__(
