@@ -11,7 +11,7 @@ environment = "mount=/vol/research/xmodal_dl/"
 
 +CanCheckpoint = True
 +GPUMem = 11000
-+JobRunTime = 12
++JobRunTime = 72
 
 should_transfer_files = True
 stream_output = True

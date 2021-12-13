@@ -174,7 +174,7 @@ if __name__ == "__main__":
     )
 
     # model configuration
-    parser.add_argument("--model", type=str, default="vqgan")
+    parser.add_argument("--model", type=str, default="evqvae")
     parser.add_argument(
         "--codebook_dim",
         type=int,
@@ -259,7 +259,7 @@ if __name__ == "__main__":
     args.val_dir = os.path.join(args.root, args.val_dir)
     args.log_dir = os.path.join(args.root, args.log_dir)
     args.backup_dir = os.path.join(args.root, args.backup_dir)
-    os.environ['WANDB_DIR'] = os.path.join(args.root, 'wandb')
+    args.ckpt_path = os.path.join(args.root, args.ckpt_path)
 
     # random seed fix
     seed_everything(args.seed)
