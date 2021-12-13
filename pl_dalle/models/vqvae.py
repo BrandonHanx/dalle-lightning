@@ -99,7 +99,7 @@ class VQVAE(pl.LightningModule):
             aeloss = F.smooth_l1_loss(x, xrec)
         else:
             aeloss = F.mse_loss(x, xrec)
-        ploss = self.perceptual_loss(x.contiguous(), xrec.contiguous())
+        ploss = self.perceptual_loss(xrec, x).mean()
         loss = aeloss + qloss + ploss
         self.log("train/rec_loss", aeloss, prog_bar=True, logger=True)
         self.log("train/embed_loss", qloss, prog_bar=True, logger=True)
@@ -117,9 +117,11 @@ class VQVAE(pl.LightningModule):
             aeloss = F.smooth_l1_loss(x, xrec)
         else:
             aeloss = F.mse_loss(x, xrec)
-        loss = aeloss + qloss
+        ploss = self.perceptual_loss(xrec, x).mean()
+        loss = aeloss + qloss + ploss
         self.log("val/rec_loss", aeloss, prog_bar=True, logger=True)
         self.log("val/embed_loss", qloss, prog_bar=True, logger=True)
+        self.log("val/perceptual_loss", ploss, prog_bar=True, logger=True)
         self.log("val/total_loss", loss, prog_bar=True, logger=True)
 
         if self.args.log_images:
