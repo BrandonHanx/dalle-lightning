@@ -202,14 +202,14 @@ if __name__ == "__main__":
         "--ch_mult",
         nargs="+",
         type=int,
-        default=[1, 1, 2, 2, 4],
+        default=[1, 1, 2, 2, 4, 4],
         help="resnet channel multiplier",
     )
     parser.add_argument(
         "--num_res_blocks", type=int, default=2, help="number of resnet blocks"
     )
     parser.add_argument(
-        "--attn_resolutions", nargs="+", type=int, default=[14], help="model settings"
+        "--attn_resolutions", nargs="+", type=int, default=[7], help="model settings"
     )
     parser.add_argument("--dropout", type=float, default=0.0, help="model settings")
     parser.add_argument("--quant_beta", type=float, default=0.25, help="quantizer beta")
